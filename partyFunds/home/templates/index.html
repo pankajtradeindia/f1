@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}
+Home
+{% endblock title %}
+{% block body %}
+{% load custom_filter %}
+{% load humanize %}
+
+<div class="text-center text-light  bg-secondary m-1 border border-danger p-4">
+Trade India Employees
+<h3></h3>
+</div> 
+<div class="container">
+    
+    <table class="table border border-1 border-info  table-hover p-2">
+    <thead>
+        <tr>
+            <th>S.No.</th>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>Address</th>
+            <th>Department</th>
+            <th>Join Date</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for d in data %}
+        <tr>
+            <td>{{d.pk}}</td>
+            <td>{{d.name|upper|capfirstchar}}</td>
+            <td>{{d.mobile}}</td>
+            <td>{{d.address|capfirstchar|add:"" }}</td>
+            <td>{{d.department|capfirstchar}}</td>
+            <td>{{d.joining_date|date:"d-m-y"}}</td>
+            <td>{{d.salary|intcomma|currency}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+<script>
+    var hh="{{data}}";
+    
+    console.log(hh);
+    alert(hh);
+</script>
+
+
+</table>
+</div>
+
+{% endblock body %}
